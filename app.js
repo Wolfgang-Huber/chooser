@@ -208,7 +208,29 @@
     }
   }
 
+  function nativeApp() {
+    const cap = window.Capacitor;
+    return !!(cap && typeof cap.isNativePlatform === 'function' && cap.isNativePlatform());
+  }
+
+  let haptics = null;
+
   function vibrate() {
+    if (nativeApp()) {
+      try {
+        const cap = window.Capacitor;
+        if (!haptics && typeof cap.registerPlugin === 'function') {
+          haptics = cap.registerPlugin('Haptics');
+        }
+        if (haptics && typeof haptics.notification === 'function') {
+          const pending = haptics.notification({ type: 'SUCCESS' });
+          if (pending && typeof pending.catch === 'function') pending.catch(() => {});
+          return;
+        }
+      } catch (err) {
+        /* Use the browser vibration API if the native plugin is missing. */
+      }
+    }
     try {
       if (typeof navigator.vibrate === 'function') navigator.vibrate(40);
     } catch (err) {
@@ -462,7 +484,7 @@
     visualViewport.addEventListener('scroll', resize);
   }
 
-  if ('serviceWorker' in navigator) {
+  if ('serviceWorker' in navigator && !nativeApp()) {
     window.addEventListener('load', () => {
       navigator.serviceWorker.register('./sw.js').catch(() => {});
     });

@@ -1,7 +1,8 @@
-const CACHE = 'chooser-v1';
+const CACHE = 'chooser-v2';
 const ASSETS = [
   './',
   './index.html',
+  './privacy.html',
   './styles.css',
   './app.js',
   './manifest.webmanifest',
