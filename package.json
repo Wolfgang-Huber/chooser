@@ -1,0 +1,18 @@
+{
+  "name": "chooser",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Chooser web app and iOS wrapper",
+  "scripts": {
+    "copy-web": "node scripts/copy-web.mjs",
+    "cap:sync": "npm run copy-web && cap sync ios"
+  },
+  "dependencies": {
+    "@capacitor/core": "8.6.2",
+    "@capacitor/haptics": "8.0.2",
+    "@capacitor/ios": "8.6.2"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "8.6.2"
+  }
+}

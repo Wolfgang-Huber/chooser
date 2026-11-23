@@ -1,0 +1,13 @@
+{
+  "appId": "com.wolfganghuber.chooser",
+  "appName": "Chooser",
+  "webDir": "www",
+  "backgroundColor": "#07070b",
+  "ios": {
+    "backgroundColor": "#07070b",
+    "contentInset": "never",
+    "scrollEnabled": false,
+    "zoomEnabled": false,
+    "allowsLinkPreview": false
+  }
+}
